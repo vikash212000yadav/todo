@@ -21,6 +21,6 @@ from todo import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('docs/', include_docs_urls(title='Todo API', description='RESTful API for Todo')),
-    path('$', views.api_root)
-   # path('todos/', include('todos.urls')),
+    path('#', views.api_root),
+    path('todos/', include('todos.urls')),
 ]
