@@ -3,10 +3,10 @@ from rest_framework import serializers
 from users.models import User
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     todos = serializers.HyperlinkedRelatedField(
         many=True,
-        view_name='todos:todo-detail',
+        view_name='todo-detail',
         read_only=True
     )
     password = serializers.CharField(write_only=True)
@@ -30,10 +30,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ('url', 'id', 'username',
-                  'password', 'first_name', 'last_name',
-                  'email', 'todos'
-                  )
+        fields = '__all__'
         extra_kwargs = {
             'url': {
                 'view_name': 'users:user-detail',
