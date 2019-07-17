@@ -5,5 +5,6 @@ from rest_framework.reverse import reverse
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
-        'todos':reverse('todos:todo-list', request=request, format=format),
+        'users': reverse('users:user-list', request=request, format=format),
+        'todos': reverse('todos:todo-list', request=request, format=format),
     })

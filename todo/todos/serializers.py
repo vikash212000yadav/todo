@@ -1,13 +1,16 @@
 from rest_framework import serializers
+
 from todos.models import Todo
 
-class TodoSerializer(serializers.Serializer):
+
+class TodoSerializer(serializers.HyperlinkedModelSerializer):
+    user = serializers.ReadOnlyField(source='user.username')
+
     class Meta:
         model = Todo
-        fields = '__all__'
-
+        fields = ('url', 'id', 'created', 'name', 'user')
         extra_kwargs = {
-                'url': {
-                    'view_name': 'todos:todo-detail',                    
-                }                
+            'url': {
+                'view_name': 'todos:todo-detail',
+            }
         }

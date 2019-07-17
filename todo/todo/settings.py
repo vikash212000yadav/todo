@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '4b8b^62%vnw$x^=&279!089se7gr_k$ufe0gyrqa&v4!m1#=er'
+SECRET_KEY = '$4b9ox^=y_6(v5w^+r*4l84qq+o(n(k2bes9ob4+!z+puo$+v-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'todos',
+    'users',
 ]
+
+AUTH_USER_MODEL = 'users.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -52,8 +55,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'todo.urls'
-
-#AUTH_USER_MODEL = 'users.User'
 
 TEMPLATES = [
     {
