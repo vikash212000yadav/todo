@@ -26,8 +26,8 @@ class Todo(models.Model):
     user = models.ForeignKey(User, related_name='todos', on_delete=models.CASCADE)
     #user field is used to represent the user who created the code todos
     description = models.CharField(max_length=250, blank=True, default='')
-    #choice = models.CharField(max_length=10, blank=True, default='Waiting')
-    status = models.ForeignKey(Status, on_delete=models.CASCADE, default='Waiting')
+    choice = models.CharField(max_length=10, blank=True, default='Waiting')
+    #status = models.ForeignKey(Status, on_delete=models.CASCADE, default='Waiting')
     #action = models.ForeignKey(Status, on_delete=models.CASCADE)
 
     class Meta:
