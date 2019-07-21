@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+"""from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from users.serializers import UserSerializer
 from rest_framework import viewsets
@@ -15,4 +15,4 @@ class UserViewSet(viewsets.ViewSet):
         queryset = User.objects.all()
         user = get_object_or_404(queryset, pk=pk)
         serializer = UserSerializer(user)
-        return Response(serializer.data)
+        return Response(serializer.data)"""
