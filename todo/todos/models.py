@@ -1,8 +1,8 @@
 from django.db import models
 from users.models import User
+from django.contrib.auth.models import AbstractUser
 
-
-class Status(models.Model):
+class Status(object):
     Waiting = 'WA'
     Working = 'WR'
     Done = 'DN'
@@ -11,13 +11,6 @@ class Status(models.Model):
         (Working, 'Working'),
         (Done, 'Done'),
     ]
-    status = models.CharField(
-        max_length=2,
-        choices=STATUS_CHOICES,
-        blank=False,
-        null=False,
-        default='Waiting',
-    )
 
 
 class Todo(models.Model):
@@ -26,9 +19,9 @@ class Todo(models.Model):
     user = models.ForeignKey(User, related_name='todos', on_delete=models.CASCADE)
     #user field is used to represent the user who created the code todos
     description = models.CharField(max_length=250, blank=True, default='')
-    choice = models.CharField(max_length=10, blank=True, default='Waiting')
-    #status = models.ForeignKey(Status, on_delete=models.CASCADE, default='Waiting')
-    #action = models.ForeignKey(Status, on_delete=models.CASCADE)
+    status = models.CharField(
+        choices=Status.STATUS_CHOICES, max_length=2, default='WA'
+    )
 
     class Meta:
         ordering = ('created',)

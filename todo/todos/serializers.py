@@ -3,6 +3,7 @@ from rest_framework import serializers
 from todos.models import Todo
 
 
+
 class TodoSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
     #status = serializers.CharField()
@@ -15,3 +16,4 @@ class TodoSerializer(serializers.ModelSerializer):
                 'view_name': 'todos:todo-detail',
             }
         }
+
