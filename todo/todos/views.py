@@ -4,15 +4,19 @@ from todos.serializers import TodoSerializer
 from todos.permissions import IsUserOrReadOnly
 from rest_framework.decorators import api_view
 from rest_framework import status
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from rest_framework.response import Response
+from django_filters import FilterSet
+
 
 class TodoViewSet(viewsets.ModelViewSet):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,
                           IsUserOrReadOnly]
-
+    filter_backends = [filters.OrderingFilter, filters.SearchFilter]
+    ordering_fields = ['id', 'created', 'name']
+    search_fields = ['id', 'name']
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
