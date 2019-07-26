@@ -21,8 +21,7 @@ todo_detail = TodoViewSet.as_view({
 
 urlpatterns = (
     path('', include(router.urls)),
+    #path('', include('rest_auth.urls')),
     path('<int:id>/start', waiting_to_working),
     path('<int:id>/complete', working_to_complete),
-
-
 )
