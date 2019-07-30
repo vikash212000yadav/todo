@@ -37,63 +37,26 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
     'rest_framework',
     'todos',
     'users',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'rest_framework.authtoken',
-    'oauth2_provider',
-    'social_django',
-    'rest_framework_social_oauth2',
 ]
+
+SITE_ID = 2
 
 AUTH_USER_MODEL = 'users.User'
 
-#django-oauth section
 AUTHENTICATION_BACKENDS = (
-    #'social_core.backends.facebook.FacebookOAuth2',
-    #'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.facebook.FacebookAppOAuth2',
-    'social_core.backends.facebook.FacebookOAuth2',
-    'rest_framework_social_oauth2.backends.DjangoOAuth2',
+    'allauth.account.auth_backends.AuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
-
-SOCIAL_AUTH_FACEBOOK_KEY = '2650186221680127'
-SOCIAL_AUTH_FACEBOOK_SECRET = '1f46794ca1729056260f3ef5e2a125b4'
-
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-    'fields': 'id, name, email'
-}
-
-#GOOGLE_OAUTH2_KEY = '501998350908-0h44r12e8v735ntpu6ie57d1hkjabkvv.apps.googleusercontent.com'
-#GOOGLE_OAUTH2_SECRET = 'uKZitwX8doJZbBuk4GK175mX'
-
-#for key in ['GOOGLE_OAUTH2_KEY',
-#            'GOOGLE_OAUTH2_SECRET',
-#            'FACEBOOK_KEY',
-#            'FACEBOOK_SECRET']:
-#    exec("SOCIAL_AUTH_{key} = os.environ.get('{key}', '')".format(key=key))
-
-#SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-#SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email', 'profile']
-
-#SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
-
-#SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
-
-#SOCIAL_AUTH_PIPELINE = (
-#    'social_core.pipeline.social_auth.social_details',
-#    'social_core.pipeline.social_auth.social_uid',
-#    'social_core.pipeline.social_auth.auth_allowed',
-#    'social_core.pipeline.social_auth.social_user',
-#    'social_core.pipeline.user.get_username',
-#    'social_core.pipeline.social_auth.associate_by_email',
-#    'social_core.pipeline.user.create_user',
-#    'social_core.pipeline.social_auth.associate_user',
-#    'social_core.pipeline.social_auth.load_extra_data',
-#    'social_core.pipeline.user.user_details',
-#)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -118,8 +81,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -183,11 +144,4 @@ REST_FRAMEWORK ={
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-        'rest_framework_social_oauth2.authentication.SocialAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    ]
 }

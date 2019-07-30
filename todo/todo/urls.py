@@ -23,7 +23,7 @@ urlpatterns = [
     path('', views.api_root),
     path('users/', include('users.urls')),
     path('todos/', include('todos.urls')),
+    path('accounts/', include('allauth.urls')),
     path('auth/', include('rest_framework.urls')),
-    path('auth/v1/', include('rest_framework_social_oauth2.urls')),
-    #path('api/v1/', include('todos.urls')),
 ]
+
